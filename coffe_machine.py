@@ -13,25 +13,24 @@ def is_resources_sufficient(order_ingredients):
 
 # Function to check if the money paid is equal to the cost of coffee if not refund the money and reset
 def is_transaction_successful(money_recieved, drink_cost):
-    if money_recieved >= drink_cost:
-        change = round(money_recieved-drink_cost,2)
-        print(f"Here is ${change} in change")
-        global profit
-        profit += drink_cost
-        return True
-    else:
-        print("Sorry that's not enough money, Money refunded")
-        return False
+  if money_recieved > drink_cost:
+    change = round(money_recieved - drink_cost, 2)
+    print(f"Here is ${change} in change")
+    global profit
+    profit += drink_cost
+    return True
+  elif money_recieved==drink_cost:
+    profit += drink_cost
+    return True
+  else:
+    print("Sorry that's not enough money, Money refunded")
+    return False
 
 # Function to calculate the amount of money paid
 def process_coins():
-    print("Please insert coins")
-    quarters = int(input("How many quarters?: "))
-    dimes = int(input("How many dimes?: "))
-    nickles = int(input("How many nickles?: "))
-    pennies = int(input("How many pennies?: "))
-    total_pennies = round(0.25 * quarters + 0.10 * dimes + 0.05 * nickles + 0.01 * pennies, 2)
-    return total_pennies
+    print("Please insert dollar")
+    dollar = float(input("How many dollars?: $"))
+    return dollar
 # if all conditions met this function would run and make the coffee
 def make_coffee(drink_name, order_ingredients):
     for item in order_ingredients:
@@ -45,7 +44,7 @@ def make_coffee(drink_name, order_ingredients):
 # type of coffee 'espresso' 'latte' 'cappuccino'
 # then according to type the resources would be checked if enough resource is present
 # ask the money check if the money is equal to cost or greater than cost return change else refund
-# if everything goes ok make coffee ans Enjoy
+# if everything goes ok make coffee and Enjoy
 is_on = True
 while is_on:
     choice = input("what would you like? (espresso/latte/cappuccino): ").lower()
